@@ -1,6 +1,8 @@
 from __future__ import print_function
-__author__      = "Zhi-Qiang Zhou"
-__copyright__   = "Copyright 2017"
+__original_author__      = "Zhi-Qiang Zhou"
+__original_copyright__   = "Copyright 2017"
+__author__      = "Rahul Raj"
+__copyright__   = "Copyright 2020"
 
 import pyopencl as cl
 
@@ -8,19 +10,19 @@ def openclInfo():
     """Print OpenCL information.
     """
     platforms = cl.get_platforms()
-    print('There are {:d} platform(s) detected:\n'.format(len(platforms)))
-    print(70 * '-')
+    output = {}
+    output{'Platform(s) detected':'{}'.format(len(platforms))}
     for platform_id, platform in enumerate(platforms):
-        print('Platform:             ', platform.name)
-        print('Vendor:               ', platform.vendor)
-        print('Version:              ', platform.version)
-        print('Number of devices:    ', len(platform.get_devices()))
-        print('  ' + 68 * '-')
+        output{'Platform': platform.name}
+        output{'Vendor':platform.vendor}
+        output{'Version':platform.version}
+        output{'Number of devices':len(platform.get_devices())}
         for device_id, device in enumerate(platform.get_devices()):
-            printDeviceInfo(platform_id, device_id, prefix='  ')
-            print('  ' + 68 * '-')
+            device_info_dict = getDeviceInfo(platform_id, device_id)
+            for key_k in device_info_dict:
+                output{key_k:device_info_dict[key_k]}
 
-def printDeviceInfo(platform_id, device_id, prefix=''):
+def getDeviceInfo(platform_id, device_id, prefix=''):
     """Print OpenCL device information.
 
     Args:
@@ -31,29 +33,31 @@ def printDeviceInfo(platform_id, device_id, prefix=''):
     platforms = cl.get_platforms()
     devices = platforms[platform_id].get_devices()
     device = devices[device_id]
-    print(prefix + 'Device {:d}:'.format(device_id), str(device.name), 
-        '[Type: {:s}]'.format(cl.device_type.to_string(device.type)))
-    print(prefix + '  Device version:               ', device.version)
-    print(prefix + '  Driver version:               ', device.driver_version)
-    print(prefix + '  Vendor:                       ', device.vendor)
-    print(prefix + '  Available:                    ', bool(device.available))
-    print(prefix + '  Address bits:                 ', device.address_bits)
-    print(prefix + '  Max compute units:            ', device.max_compute_units)
-    print(prefix + '  Max clock frequency:          ', device.max_clock_frequency, 'MHz')
-    print(prefix + '  Global memory:                ', int(device.global_mem_size / 1024**2), 'MB')
-    print(prefix + '  Global cache memory:          ', int(device.global_mem_cache_size), 'B')
-    print(prefix + '  Local memory:                 ', int(device.local_mem_size / 1024), 'KB')
-    print(prefix + '  Max allocable memory:         ', int(device.max_mem_alloc_size / 1024**2), 'MB')
-    print(prefix + '  Max constant args:            ', device.max_constant_args)
-    print(prefix + '  Max work group size           ', device.max_work_group_size)
-    print(prefix + '  Max work item dimensions:     ', device.max_work_item_dimensions)
-    print(prefix + '  Max work item size:           ', device.max_work_item_sizes)
-    print(prefix + '  Image support:                ', bool(device.image_support))
-    print(prefix + '  Max Image2D size (H x W):     ', device.image2d_max_height, 'x', 
-        device.image2d_max_width)
-    print(prefix + '  Max Image3D size (D x H x W): ', device.image3d_max_depth, 'x', 
-        device.image3d_max_height, 'x', device.image3d_max_width)
+    output={}
+    output{'Device {:d}'.format(device_id):'{} - {}'.format(str(device.name), 
+        '[Type: {:s}]'.format(cl.device_type.to_string(device.type)))}
+    output{'Device version':device.version}
+    output{'Driver version':device.driver_version}
+    output{'Vendor':device.vendor}
+    output{'Available':bool(device.available)}
+    output{'Address bits':device.address_bits}
+    output{'Max compute units':device.max_compute_units}
+    output{'Max clock frequency':'{} MHz'.format(device.max_clock_frequency)}
+    output{'Global memory':'{} MB'.format(int(device.global_mem_size / 1024**2))}
+    output{'Global cache memory':'{} B'.format(int(device.global_mem_cache_size))}
+    output{'Local memory': '{} KB'.format(int(device.local_mem_size / 1024))}
+    output{'Max allocable memory': '{} MB'.format(int(device.max_mem_alloc_size / 1024**2))}
+    output{'Max constant args': device.max_constant_args}
+    output{'Max work group siz': device.max_work_group_size}
+    output{'Max work item dimensions': device.max_work_item_dimensions}
+    output{'Max work item size': device.max_work_item_sizes}
+    output{'Image support': bool(device.image_support)}
+    output{'Max Image2D size (H x W)': '{}x{}'.format(device.image2d_max_height,
+        device.image2d_max_width)}
+    output{'Max Image3D size (D x H x W)':'{}x{}x{}'.format(device.image3d_max_depth,
+        device.image3d_max_height, device.image3d_max_width)}
+    return output
 
 if __name__ == '__main__':
 
-    openclInfo()
+    print(openclInfo())
