@@ -94,7 +94,7 @@ def getDeviceInfo(device_id, prefix=''):
             attrs['MAXIMUM_SURFACE2D_LAYERED_WIDTH'], 
             attrs['MAXIMUM_SURFACE2D_LAYERED_HEIGHT'], 
             attrs['MAXIMUM_SURFACE2D_LAYERED_LAYERS'])
-    output['Total amount of constant memory']= '{} Bytes'.format(attrs['TOTAL_CONSTANT_MEMORY'])}
+    output['Total amount of constant memory']= '{} Bytes'.format(attrs['TOTAL_CONSTANT_MEMORY'])
     output['Total amount of shared memory per block':
         '{} Bytes'.format(attrs['MAX_SHARED_MEMORY_PER_BLOCK'])
     output['Total number of registers available per block']= attrs['MAX_REGISTERS_PER_BLOCK']
