@@ -14,6 +14,11 @@ Get CUDA and OpenCL information using python
   ```shell
   python3 CUDAInfo.py
   ```
+You can alternatively import it as a module:
+```
+from CUDAInfo import cudaInfo
+print(cudaInfo()) #dict of Items
+```
 
 Example output:
 
@@ -68,8 +73,13 @@ Device 0: GeForce RTX 2080 Ti
 2. Run the following script:
 
   ```shell
-  python3 CUDAInfo.py
+  python3 OpenCLInfo.py
   ```
+  You can alternatively import it as a module:
+```
+from OpenCLInfo import openclInfo
+print(openclInfo()) #dict of Items
+```
 
 Example output:
 
