@@ -1,6 +1,6 @@
 from __future__ import print_function
 __original_author__      = "Zhi-Qiang Zhou"
-__original_copyright__   = "Copyright 2017"
+__original_copyright__  = "Copyright 2017"
 __author__      = "Rahul Raj"
 __copyright__   = "Copyright 2020"
 
