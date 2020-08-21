@@ -43,8 +43,8 @@ def getDeviceInfo(platform_id, device_id, prefix=''):
     output['Address bits']=device.address_bits
     output['Max compute units']=device.max_compute_units
     output['Max clock frequency']='{} MHz'.format(device.max_clock_frequency)
-    output['Global memory']={} MB'.format(int(device.global_mem_size / 1024**2))
-    output['Global cache memory']={} B'.format(int(device.global_mem_cache_size))
+    output['Global memory']='{} MB'.format(int(device.global_mem_size / 1024**2))
+    output['Global cache memory']='{} B'.format(int(device.global_mem_cache_size))
     output['Local memory']='{} KB'.format(int(device.local_mem_size / 1024))
     output['Max allocable memory']='{} MB'.format(int(device.max_mem_alloc_size / 1024**2))
     output['Max constant args']=device.max_constant_args
@@ -54,7 +54,7 @@ def getDeviceInfo(platform_id, device_id, prefix=''):
     output['Image support']=bool(device.image_support)
     output['Max Image2D size (H x W)']='{}x{}'.format(device.image2d_max_height,
         device.image2d_max_width)
-    output['Max Image3D size (D x H x W)']={}x{}x{}'.format(device.image3d_max_depth,
+    output['Max Image3D size (D x H x W)']='{}x{}x{}'.format(device.image3d_max_depth,
         device.image3d_max_height, device.image3d_max_width)
     return output
 
