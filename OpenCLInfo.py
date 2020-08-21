@@ -21,6 +21,7 @@ def openclInfo():
             device_info_dict = getDeviceInfo(platform_id, device_id)
             for key_k in device_info_dict:
                 output[key_k]=device_info_dict[key_k]
+    return output
 
 def getDeviceInfo(platform_id, device_id, prefix=''):
     """Print OpenCL device information.
