@@ -69,14 +69,16 @@ def getDeviceInfo(device_id, prefix=''):
     runtimeVersion = pycuda.driver.get_version()
     driverVersion = pycuda.driver.get_driver_version()
     output = {}
-    output['Device {:d}'.format(device_id)]= device.name()
+    output['Device ID'= 'Device {:d}'.format(device_id)
+    output['Device name'= device.name()
     output['CUDA Driver Version / Runtime Version']= '{:d}.{:d} / {:d}.{:d}'.format(
             driverVersion // 1000, (driverVersion % 100) // 10,
             runtimeVersion[0], runtimeVersion[1])
     output['CUDA Capability Major/Minor version number']= str(major) + '.' + str(minor)
     output['Total amount of global memory']= '{} MBytes'.format(device.total_memory() // 1024**2)
-    output['({:2d}) Multiprocessors x ({:3d}) CUDA Cores/MP'.format(
-        attrs['MULTIPROCESSOR_COUNT'], cores)]= '{} CUDA Cores'.format(attrs['MULTIPROCESSOR_COUNT'] * cores)
+    output['Multiprocessors Count']= attrs['MULTIPROCESSOR_COUNT']
+    output['CUDA Cores/MP'] =  cores
+    output['Total Cuda Cores']= '{} CUDA Cores'.format(attrs['MULTIPROCESSOR_COUNT'] * cores)
     output['GPU Clock rate']= '{} MHz'.format(attrs['CLOCK_RATE'] / 1e3)
     output['Memory Clock rate']= '{} MHz'.format(attrs['MEMORY_CLOCK_RATE'] / 1e3)
     output['Memory Bus Width']= '{:d}-bit'.format(attrs['GLOBAL_MEMORY_BUS_WIDTH'])
