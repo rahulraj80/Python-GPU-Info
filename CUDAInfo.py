@@ -69,8 +69,8 @@ def getDeviceInfo(device_id, prefix=''):
     runtimeVersion = pycuda.driver.get_version()
     driverVersion = pycuda.driver.get_driver_version()
     output = {}
-    output['Device ID'= 'Device {:d}'.format(device_id)
-    output['Device name'= device.name()
+    output['Device ID']= 'Device {:d}'.format(device_id)
+    output['Device name']= device.name()
     output['CUDA Driver Version / Runtime Version']= '{:d}.{:d} / {:d}.{:d}'.format(
             driverVersion // 1000, (driverVersion % 100) // 10,
             runtimeVersion[0], runtimeVersion[1])
@@ -117,7 +117,7 @@ def getDeviceInfo(device_id, prefix=''):
     output['Integrated GPU sharing Host Memory']= bool(attrs['INTEGRATED'])
     output['Support host page-locked memory mapping']= bool(attrs['CAN_MAP_HOST_MEMORY'])
     output['Alignment requirement for Surfaces']= bool(attrs['SURFACE_ALIGNMENT'])
-    output['Device has ECC support'] = bool(attrs['ECC_ENABLED'])
+    output['Device has ECC support']= bool(attrs['ECC_ENABLED'])
     output['Device supports Unified Addressing (UVA)']= bool(attrs['UNIFIED_ADDRESSING'])
     output['Device PCI Bus ID / PCI location ID']= '{} / {}'.format(attrs['PCI_BUS_ID'], attrs['PCI_DEVICE_ID'])
     output['Compute Mode']= attrs['COMPUTE_MODE']
